@@ -1,0 +1,28 @@
+{
+  "commands": {
+    "/start": {
+      "response": "Welcome to the YouTube Video Downloader Bot! Send me a YouTube URL or title, and I'll help you download it."
+    },
+    "/help": {
+      "response": "To download a YouTube video, send either the URL or the video title, like this:\n\n/download https://www.youtube.com/watch?v=dQw4w9WgXcQ\nor\n/download Your Favorite Song"
+    },
+    "/download": {
+      "response": "Processing your request...",
+      "action": {
+        "type": "request",
+        "method": "GET",
+        "url": "https://frozen-youtube-api-search-link.onrender.com/download",
+        "params": {
+          "url": "{user_message}",
+          "title": "{user_message}"
+        },
+        "response_handling": {
+          "type": "json",
+          "check_field": "download_link",
+          "success_response": "Here is your download link: {download_link}",
+          "failure_response": "Sorry, I couldn't find a video with that title or URL. Please check your input."
+        }
+      }
+    }
+  }
+}
